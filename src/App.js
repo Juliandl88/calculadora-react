@@ -1,9 +1,11 @@
 import './App.css';
 import logo from "./imagenes/freecodecamp-logo.png";
 import Boton from "./componentes/Boton";
-import Pantalla from "./componentes/Pantalla";
+import Pantalla from "./componentes/Pantalla"; 
 import BotonClear from "./componentes/BotonClear";
 import { useState } from "react";
+import { evaluate } from "mathjs"  // con mathjs evalua la expresion como un string y la expresa como un math
+const Swal = require('sweetalert2') // Para hacer alertas
 
 function App() {
 
@@ -12,6 +14,15 @@ function App() {
   const agregarInput = valor =>{
     setInput(input + valor);
   }
+
+  
+  const calcularResultado = () => {
+    if(input){ // si es falsa no se ejecuta
+    setInput(evaluate(input))
+  }else{
+    Swal.fire('Ingresa valores a calcular')
+  }
+} 
 
   return (
     <div className="App">
@@ -42,7 +53,7 @@ function App() {
          <Boton manejarClic={agregarInput}>*</Boton>
        </div>
        <div className="fila">
-         <Boton manejarClic={agregarInput}>=</Boton>
+         <Boton manejarClic={calcularResultado}>=</Boton>
          <Boton manejarClic={agregarInput}>0</Boton>
          <Boton manejarClic={agregarInput}>.</Boton>
          <Boton manejarClic={agregarInput}>/</Boton>
