@@ -60,7 +60,7 @@ function App() {
        </div>
        <div className="fila">
        <BotonClear manejarClear={() => setInput("")}>
-         Clear
+         Borrar
        </BotonClear>
        </div>
      </div>
